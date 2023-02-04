@@ -12,14 +12,24 @@ const columns = [
     header: () => <p className="text-sm text-start">Ticket</p>,
     cell: (title) => (
       <div className="flex flex-col ">
-        <h3 className="text-xl text-blue-700">{title.getValue()}</h3>
+        <h3 className="text-lg font-bold text-blue-700">{title.getValue()}</h3>
         <p className="text-base text-neutral-600 ">{title.row.original.description}</p>
       </div>
     ),
   }),
-  columnHelper.accessor("status", {}),
-  columnHelper.accessor("createdOn", {}),
+  columnHelper.accessor("status", {
+    header: () => <p className="px-10 text-sm text-start">Status</p>,
+    cell: (data) => (
+      <div className="flex justify-center">
+        <span className="px-3 py-1 text-center bg-red-500 rounded-full">{data.getValue()}</span>
+      </div>
+    ),
+  }),
+  columnHelper.accessor("createdOn", {
+    header: () => <p className="text-start">Created On</p>,
+  }),
   columnHelper.accessor("replies", {
+    header: () => <p className="text-start">Replies</p>,
     cell: (data) => (
       <div className="flex space-x-2">
         <Image className="rounded-full" src={data.row.original.replies.imgUrl} alt="img" height={20} width={20} />
@@ -43,12 +53,14 @@ const DataTable = () => {
   });
 
   return (
-    <table>
-      <thead className="mx-4">
+    <table className="w-full">
+      <thead className="">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
+              <th className="" key={header.id}>
+                {flexRender(header.column.columnDef.header, header.getContext())}
+              </th>
             ))}
           </tr>
         ))}
@@ -57,7 +69,7 @@ const DataTable = () => {
         {table.getRowModel().rows.map((row) => (
           <tr key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td className="mx-11" key={cell.id}>
+              <td className="py-4 border-t-2" key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
