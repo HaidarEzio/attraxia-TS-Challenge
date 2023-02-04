@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
 import Header from "@/components/reusable/header.reusable";
+import DataTable from "@/components/dataTable.comp";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -47,7 +48,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center px-8 py-6 bg-white border-t-2 ">Hello !!</div>
+          <div className="flex items-center justify-center px-8 py-6 bg-white border-t-2 ">
+            <DataTable />
+          </div>
         </div>
       </main>
     </>
