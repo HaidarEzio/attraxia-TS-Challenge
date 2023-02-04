@@ -1,5 +1,6 @@
 export interface TableData {
-  ticket: { title: string; description: string };
+  ticket: string;
+  description: string;
   status: "All" | "Open" | "Feedback" | "Resolved";
   createdOn: string;
   replies: {
@@ -12,66 +13,36 @@ export interface TableData {
 
 export const defaultData: TableData[] = [
   {
-    ticket: { title: "sup mf", description: "it is what it is" },
+    ticket: "Domain Mapped Site Shows Cors Policy Error",
+    description: "General WordPress ",
     status: "Open",
     createdOn: "2020-01-01",
     replies: {
-      imgUrl: "https://picsum.photos/200",
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
       staff: true,
     },
   },
   {
-    ticket: { title: "sup mf", description: "it is what it is" },
+    ticket: "sup mf",
+    description: "it is what it is",
     status: "Open",
     createdOn: "2020-01-01",
     replies: {
-      imgUrl: "https://picsum.photos/200",
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
       staff: true,
     },
   },
   {
-    ticket: { title: "sup mf", description: "it is what it is" },
+    ticket: "sup mf",
+    description: "it is what it is",
     status: "Open",
     createdOn: "2020-01-01",
     replies: {
-      imgUrl: "https://picsum.photos/200",
-      name: "John Doe",
-      replyNumber: 6,
-      staff: true,
-    },
-  },
-  {
-    ticket: { title: "sup mf", description: "it is what it is" },
-    status: "Open",
-    createdOn: "2020-01-01",
-    replies: {
-      imgUrl: "https://picsum.photos/200",
-      name: "John Doe",
-      replyNumber: 6,
-      staff: true,
-    },
-  },
-  {
-    ticket: { title: "sup mf", description: "it is what it is" },
-    status: "Open",
-    createdOn: "2020-01-01",
-    replies: {
-      imgUrl: "https://picsum.photos/200",
-      name: "John Doe",
-      replyNumber: 6,
-      staff: true,
-    },
-  },
-  {
-    ticket: { title: "sup mf", description: "it is what it is" },
-    status: "Open",
-    createdOn: "2020-01-01",
-    replies: {
-      imgUrl: "https://picsum.photos/200",
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
       staff: true,

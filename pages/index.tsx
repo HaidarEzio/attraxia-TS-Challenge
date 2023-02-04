@@ -48,7 +48,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center px-8 py-6 bg-white border-t-2 ">
+          <div className="flex items-center justify-center w-full px-8 py-6 mb-20 bg-white border-t-2 ">
             <DataTable />
           </div>
         </div>
