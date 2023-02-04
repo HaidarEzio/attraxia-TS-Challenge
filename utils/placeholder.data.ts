@@ -16,7 +16,7 @@ export const defaultData: TableData[] = [
     ticket: "Domain Mapped Site Shows Cors Policy Error",
     description: "General WordPress ",
     status: "Open",
-    createdOn: "2020-01-01",
+    createdOn: "Today @ 12:04 AM",
     replies: {
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
@@ -28,7 +28,7 @@ export const defaultData: TableData[] = [
     ticket: "sup mf",
     description: "it is what it is",
     status: "Open",
-    createdOn: "2020-01-01",
+    createdOn: "Today @ 12:04 AM",
     replies: {
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
@@ -40,7 +40,7 @@ export const defaultData: TableData[] = [
     ticket: "sup mf",
     description: "it is what it is",
     status: "Open",
-    createdOn: "2020-01-01",
+    createdOn: "Today @ 12:04 AM",
     replies: {
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
