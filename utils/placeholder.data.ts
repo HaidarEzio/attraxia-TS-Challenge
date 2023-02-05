@@ -20,9 +20,9 @@ export const defaultData: TableDataType[] = [
     createdOn: "Today @ 12:04 AM",
     replies: {
       imgUrl: "https://avatarapi.com/images/person2.jpg",
-      name: "John Doe",
+      name: "Deez Doe",
       replyNumber: 6,
-      staff: true,
+      staff: false,
     },
   },
   {
