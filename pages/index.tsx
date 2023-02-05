@@ -6,8 +6,8 @@ import { atom, useAtom } from "jotai";
 import { Column } from "react-table";
 import { BiRightArrowAlt } from "react-icons/bi";
 
-import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/pages/components/reusable/index.reusable";
-import { Reply } from "@/pages/components/table/index";
+import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/pages/components/reusable";
+import { Reply } from "@/pages/components/table";
 import DataTable from "@/pages/components/dataTable.comp";
 import Footer from "@/pages/components/footer.comp";
 
