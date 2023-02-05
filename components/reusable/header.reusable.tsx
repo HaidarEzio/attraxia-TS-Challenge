@@ -6,7 +6,7 @@ const Header = () => {
       <div className="flex items-center space-x-5">
         <h4 className="">Need Help?</h4>
         <button className="flex items-center py-3 space-x-2 bg-blue-600 rounded-lg px-7 ">
-          <Image src="/lifebuoy.svg" width={13} height={13} alt="support-icon" />
+          <Image src="/lifebuoy.svg" width={20} height={20} alt="support-icon" />
 
           <span className="font-bold text-white">Get Support</span>
         </button>

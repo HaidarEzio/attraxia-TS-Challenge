@@ -5,8 +5,6 @@ import Image from "next/image";
 import DropDown from "./reusable/dropdown.reusable";
 import { useAtom } from "jotai";
 import { statusAtom, ticketAtom } from "@/pages";
-// //? this is for type safety and autocompletion
-// const columnHelper = createColumnHelper<TableDataType>();
 
 // const columns = [
 //   columnHelper.accessor("ticket", {
