@@ -7,7 +7,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 
 import { Column } from "react-table";
 
-import Header from "@/pages/components/reusable/header.reusable";
+import SectionHeader from "@/pages/components/reusable/sectionHeader.reusable";
 import DropDown from "@/pages/components/reusable/dropdown.reusable";
 import SearchBar from "@/pages/components/reusable/searchBar.reusable";
 import StatusBadge from "@/pages/components/reusable/status.reusable";
@@ -18,6 +18,7 @@ import Footer from "@/pages/components/footer.comp";
 
 import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
 import { customFilterFunction } from "@/utils/filter.util";
+import SectionBody from "./components/reusable/sectionBody.reusable";
 
 export const statusAtom = atom<StatusType>("All");
 export const ticketAtom = atom<string>("");
@@ -64,6 +65,7 @@ export default function Home() {
     ],
     []
   );
+  //*TODO: DOn't forget to ANY in all return types
 
   return (
     <>
@@ -73,13 +75,17 @@ export default function Home() {
       <div className="h-14 bg-neutral-700" />
       <main className="flex flex-col items-center bg-gray-100">
         <div className="w-4/6">
-          <Header />
+          <SectionHeader title="Support &nbsp;Resources">
+            <div className="flex items-center space-x-5">
+              <h4 className="">Need Help?</h4>
+              <button className="flex items-center py-3 space-x-2 bg-blue-600 rounded-lg px-7 ">
+                <Image src="/lifebuoy.svg" width={20} height={20} alt="support-icon" />
+                <span className="font-bold text-white">Get Support</span>
+              </button>
+            </div>
+          </SectionHeader>
           <section className="flex items-center justify-center px-8 py-10 bg-white border-t-2 ">
-            {/* this can be extracted to a reusable component */}
-            <div className="flex flex-col items-center justify-center space-y-5 ">
-              <Image src="/support-icon.svg" width={64} height={64} alt="support-icon" />
-              <h3 className="text-2xl font-bold">Support Forums</h3>
-              <p className="text-center">Search the topic you need help with in our support forums.</p>
+            <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
               <div className="flex items-center text-blue-500">
                 <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
                   browse forums
@@ -88,15 +94,14 @@ export default function Home() {
               </div>
               {/* search bar */}
               <SearchBar placeholder="Search Support Forum" />
-            </div>
+            </SectionBody>
           </section>
-          <section className="flex items-center justify-between px-8 py-6 mt-10 bg-white mt-flex">
-            <h3 className="font-bold">My Tickets</h3>
+          <SectionHeader title="My Tickets">
             <div className="flex items-center space-x-6">
               <DropDown />
               <SearchBar placeholder="Search Tickets" setTicket={setTicket} />
             </div>
-          </section>
+          </SectionHeader>
           <section className="flex items-center justify-center w-full px-8 py-6 bg-white border-t-2 ">
             <DataTable data={data} columns={columns} />
           </section>
