@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import DropDown from "./reusable/dropdown.reusable";
 import { useAtom } from "jotai";
-import { statusAtom } from "@/pages";
+import { statusAtom, ticketAtom } from "@/pages";
 // //? this is for type safety and autocompletion
 // const columnHelper = createColumnHelper<TableDataType>();
 
@@ -44,8 +44,8 @@ import { statusAtom } from "@/pages";
 // ];
 
 const DataTable = ({ columns, data }: any) => {
-  const [status, setStatus] = useAtom(statusAtom);
-
+  const [status] = useAtom(statusAtom);
+  const [ticket] = useAtom(ticketAtom);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setFilter } = useTable(
     {
       columns,
@@ -57,7 +57,8 @@ const DataTable = ({ columns, data }: any) => {
   useEffect(() => {
     // This will now use our custom filter for age
     setFilter("status", status);
-  }, [status]);
+    setFilter("ticket", ticket);
+  }, [status, setFilter, ticket]);
   return (
     <>
       <table {...getTableProps()} className="w-full">

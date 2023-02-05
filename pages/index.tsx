@@ -9,12 +9,15 @@ import DropDown from "@/components/reusable/dropdown.reusable";
 import { atom } from "jotai";
 import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
 import { useState, useMemo } from "react";
+import { useAtom } from "jotai";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const statusAtom = atom<StatusType>("All");
+export const ticketAtom = atom<string>("");
 
 export default function Home() {
+  const [ticket, setTicket] = useAtom(ticketAtom);
   const data: TableDataType[] = useMemo(() => [...defaultData], []);
 
   const customFilterFunction = (rows: any, id: any, filterValue: any) => {
@@ -66,10 +69,6 @@ export default function Home() {
     []
   );
 
-  // const [openDropDown, setOpenDropDown] = useState<Boolean>(false);
-  // const [selectedLabel, setSelectedLabel] = useState<StatusType>("All");
-  // const [selectedValue, setSelectedValue] = useState<number>(data[0].value);
-
   return (
     <>
       <Head>
@@ -107,7 +106,12 @@ export default function Home() {
               <div>
                 <div className="h-11 px-4 w-[16rem] border space-x-1 rounded-full text-neutral-700 bg-neutral-100 border-neutral-200 flex items-center">
                   <BiSearch size="1.2rem" className="align-bottom" />
-                  <input type="text" className="text-sm bg-transparent focus:outline-none focus:border-blue-500" placeholder="Search Support Forum" />
+                  <input
+                    type="text"
+                    className="text-sm bg-transparent focus:outline-none focus:border-blue-500"
+                    placeholder="Search Support Forum"
+                    onChange={(e) => setTicket(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
