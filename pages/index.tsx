@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
+
 import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { useTable, Column, useFilters } from "react-table";
 import Header from "@/components/reusable/header.reusable";
 import DataTable from "@/components/dataTable.comp";
@@ -10,8 +11,7 @@ import { atom } from "jotai";
 import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
 import { useState, useMemo } from "react";
 import { useAtom } from "jotai";
-
-const inter = Inter({ subsets: ["latin"] });
+import Badge from "@/components/reusable/badge.reusable";
 
 export const statusAtom = atom<StatusType>("All");
 export const ticketAtom = atom<string>("");
@@ -115,9 +115,23 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <section className="flex items-center justify-center w-full px-8 py-6 mb-20 bg-white border-t-2 ">
+          <section className="flex items-center justify-center w-full px-8 py-6 bg-white border-t-2 ">
             <DataTable data={data} columns={columns} />
           </section>
+          <div className="flex justify-between w-full mt-5 mb-10">
+            <div className="flex w-28 justify-evenly">
+              <Badge>1</Badge>
+              <Badge>2</Badge>
+              <Badge>3</Badge>
+            </div>
+            <div className="flex space-x-5 w-fit justify-evenly">
+              <p>1-50 of 149</p>
+              <div className="flex items-center justify-between space-x-3">
+                <RiArrowLeftSLine size="1.5rem" className="p-0.5 align-bottom border rounded-sm" />{" "}
+                <RiArrowRightSLine size="1.5rem" className="p-0.5 align-bottom border rounded-sm" />
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </>
