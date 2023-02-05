@@ -49,4 +49,40 @@ export const defaultData: TableDataType[] = [
       staff: true,
     },
   },
+  {
+    ticket: "Seeehsdsf",
+    description: "I make mirrors",
+    status: "Feedback",
+    createdOn: "Today @ 12:04 AM",
+    replies: {
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
+      name: "John Doe",
+      replyNumber: 6,
+      staff: true,
+    },
+  },
+  {
+    ticket: "sup mf",
+    description: "it is what it is",
+    status: "Feedback",
+    createdOn: "Today @ 12:04 AM",
+    replies: {
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
+      name: "John Doe",
+      replyNumber: 6,
+      staff: true,
+    },
+  },
+  {
+    ticket: "sup mf",
+    description: "it is what it is",
+    status: "Resolved",
+    createdOn: "Today @ 12:04 AM",
+    replies: {
+      imgUrl: "https://avatarapi.com/images/person2.jpg",
+      name: "John Doe",
+      replyNumber: 6,
+      staff: true,
+    },
+  },
 ];

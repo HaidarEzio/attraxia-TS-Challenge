@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { StatusType } from "utils/placeholder.data";
+import { StatusType, defaultData } from "utils/placeholder.data";
+import { useAtom } from "jotai";
+import { statusAtom } from "@/pages";
 
 const DropDown = () => {
   const data = [
@@ -21,9 +23,12 @@ const DropDown = () => {
       value: 35,
     },
   ] as const;
+
   const [openDropDown, setOpenDropDown] = useState<Boolean>(false);
   const [selectedLabel, setSelectedLabel] = useState<StatusType>("All");
   const [selectedValue, setSelectedValue] = useState<number>(data[0].value);
+
+  const [status, setStatus] = useAtom(statusAtom);
 
   return (
     <div className="relative w-[7rem]" onClick={() => setOpenDropDown(!openDropDown)}>
@@ -43,6 +48,7 @@ const DropDown = () => {
               className="flex justify-between px-2 py-1 text-sm text-neutral-600 hover:bg-neutral-100"
               key={idx}
               onClick={() => {
+                setStatus(label);
                 setSelectedLabel(label);
                 setSelectedValue(value);
               }}
