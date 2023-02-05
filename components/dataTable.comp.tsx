@@ -1,5 +1,5 @@
 import { TableDataType, defaultData } from "../utils/placeholder.data";
-import { useTable, Column, Row } from "react-table";
+import { useTable, Column, useFilters } from "react-table";
 import { useState, useMemo } from "react";
 import Image from "next/image";
 
@@ -64,6 +64,8 @@ const DataTable = () => {
             <span className="px-3 py-1 text-center bg-red-500 rounded-full">{data.value}</span>
           </div>
         ),
+        // Filter: SelectColumnFilter,
+        // filter: "includes",
       },
       {
         Header: () => <p className="text-start">Created On</p>,
@@ -87,7 +89,13 @@ const DataTable = () => {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+    {
+      columns,
+      data,
+    },
+    useFilters
+  );
   return (
     <>
       <table {...getTableProps()} className="w-full">
@@ -97,6 +105,7 @@ const DataTable = () => {
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()} className="" key={column.id}>
                   {column.render("Header")}
+                  {/* <div>{column.canFilter ? column.render("Filter") : null}</div> */}
                 </th>
               ))}
             </tr>
