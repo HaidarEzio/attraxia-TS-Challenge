@@ -52,18 +52,17 @@ export default function Home() {
         accessor: "createdOn",
       },
       {
-        Header: "Replies",
+        Header: () => <p className="text-start">Replies</p>,
         accessor: "replies",
-        Cell: ({ row }) =>
-          row && (
-            <div className="flex space-x-2">
-              <Image className="rounded-full" src={row.original.replies.imgUrl} alt="img" height={20} width={20} />
-              <p>Last by {row.original.replies.name}</p>
-              <p className="text-white bg-black rounded-full ">{row.original.replies.replyNumber}</p>
+        Cell: ({ row }) => (
+          <div className="flex space-x-2">
+            <Image className="rounded-full" src={row.original.replies.imgUrl} alt="img" height={20} width={20} />
+            <p>Last by {row.original.replies.name}</p>
+            <p className="text-white bg-black rounded-full ">{row.original.replies.replyNumber}</p>
 
-              {row.original.replies.staff ? <p className="">staff</p> : null}
-            </div>
-          ),
+            {row.original.replies.staff ? <p className="">staff</p> : null}
+          </div>
+        ),
       },
     ],
     []
