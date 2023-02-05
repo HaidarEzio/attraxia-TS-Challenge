@@ -1,7 +1,8 @@
-export interface TableData {
+export type StatusType = "All" | "Open" | "Feedback" | "Resolved";
+export interface TableDataType {
   ticket: string;
   description: string;
-  status: "All" | "Open" | "Feedback" | "Resolved";
+  status: StatusType;
   createdOn: string;
   replies: {
     imgUrl: string;
@@ -11,7 +12,7 @@ export interface TableData {
   };
 }
 
-export const defaultData: TableData[] = [
+export const defaultData: TableDataType[] = [
   {
     ticket: "Domain Mapped Site Shows Cors Policy Error",
     description: "General WordPress ",
