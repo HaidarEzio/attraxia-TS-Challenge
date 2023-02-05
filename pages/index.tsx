@@ -2,8 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
+
 import Header from "@/components/reusable/header.reusable";
 import DataTable from "@/components/dataTable.comp";
+import DropDown from "@/components/reusable/dropdown.reusable";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -38,8 +40,9 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-between px-8 py-6 mt-10 bg-white mt-flex">
             <h3 className="font-bold">My Tickets</h3>
-            <div className="flex items-center space-x-5">
-              <h4 className="">All Tickets + 14</h4>
+            <div className="flex items-center space-x-6">
+              <DropDown />
+
               <div>
                 <div className="h-11 px-4 w-[16rem] border space-x-1 rounded-full text-neutral-700 bg-neutral-100 border-neutral-200 flex items-center">
                   <BiSearch size="1.2rem" className="align-bottom" />
