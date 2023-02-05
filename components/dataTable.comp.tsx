@@ -1,4 +1,4 @@
-import { TableDataType, defaultData } from "../../utils/placeholder.data";
+import { TableDataType, defaultData } from "../utils/placeholder.data";
 import { useTable, Column, useFilters } from "react-table";
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
@@ -40,6 +40,9 @@ import { statusAtom, ticketAtom } from "@/pages";
 //     ),
 //   }),
 // ];
+// interface DataTableProps {
+//   columns: Column<TableDataType>[];
+// }
 
 const DataTable = ({ columns, data }: any) => {
   const [status] = useAtom(statusAtom);
@@ -65,8 +68,8 @@ const DataTable = ({ columns, data }: any) => {
         <thead className="">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} className="" key={column.id}>
+              {headerGroup.headers.map((column, idx) => (
+                <th {...column.getHeaderProps()} className="" key={idx}>
                   {column.render("Header")}
                 </th>
               ))}
