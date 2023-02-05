@@ -1,8 +1,10 @@
 import { TableDataType, defaultData } from "../utils/placeholder.data";
 import { useTable, Column, useFilters } from "react-table";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
-
+import DropDown from "./reusable/dropdown.reusable";
+import { useAtom } from "jotai";
+import { statusAtom } from "@/pages";
 // //? this is for type safety and autocompletion
 // const columnHelper = createColumnHelper<TableDataType>();
 
@@ -41,61 +43,21 @@ import Image from "next/image";
 //   }),
 // ];
 
-const DataTable = () => {
-  const data: TableDataType[] = useMemo(() => [...defaultData], []);
+const DataTable = ({ columns, data }: any) => {
+  const [status, setStatus] = useAtom(statusAtom);
 
-  const columns: Column<TableDataType>[] = useMemo(
-    () => [
-      {
-        Header: () => <p className="text-sm text-start">Ticket</p>,
-        accessor: "ticket",
-        Cell: (title) => (
-          <div className="flex flex-col ">
-            <h3 className="text-lg font-bold text-blue-700">{title.value}</h3>
-            <p className="text-base text-neutral-600 ">{title.row.original.description}</p>
-          </div>
-        ),
-      },
-      {
-        Header: () => <p className="px-10 text-sm text-start">Status</p>,
-        accessor: "status",
-        Cell: (data) => (
-          <div className="flex justify-center">
-            <span className="px-3 py-1 text-center bg-red-500 rounded-full">{data.value}</span>
-          </div>
-        ),
-        // Filter: SelectColumnFilter,
-        // filter: "includes",
-      },
-      {
-        Header: () => <p className="text-start">Created On</p>,
-        accessor: "createdOn",
-      },
-      {
-        Header: "Replies",
-        accessor: "replies",
-        Cell: ({ row }) =>
-          row && (
-            <div className="flex space-x-2">
-              <Image className="rounded-full" src={row.original.replies.imgUrl} alt="img" height={20} width={20} />
-              <p>Last by {row.original.replies.name}</p>
-              <p className="text-white bg-black rounded-full ">{row.original.replies.replyNumber}</p>
-
-              {row.original.replies.staff ? <p className="">staff</p> : null}
-            </div>
-          ),
-      },
-    ],
-    []
-  );
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setFilter } = useTable(
     {
       columns,
       data,
     },
     useFilters
   );
+  // Listen for input changes outside
+  useEffect(() => {
+    // This will now use our custom filter for age
+    setFilter("status", status);
+  }, [status]);
   return (
     <>
       <table {...getTableProps()} className="w-full">
@@ -105,7 +67,6 @@ const DataTable = () => {
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()} className="" key={column.id}>
                   {column.render("Header")}
-                  {/* <div>{column.canFilter ? column.render("Filter") : null}</div> */}
                 </th>
               ))}
             </tr>
