@@ -1,25 +1,20 @@
 import { useMemo } from "react";
-import { atom, useAtom } from "jotai";
 import Head from "next/head";
 import Image from "next/image";
 
+import { atom, useAtom } from "jotai";
+import { Column } from "react-table";
 import { BiRightArrowAlt } from "react-icons/bi";
 
-import { Column } from "react-table";
-
-import SectionHeader from "@/pages/components/reusable/sectionHeader.reusable";
-import DropDown from "@/pages/components/reusable/dropdown.reusable";
-import SearchBar from "@/pages/components/reusable/searchBar.reusable";
-import StatusBadge from "@/pages/components/reusable/status.reusable";
-
+import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/pages/components/reusable/index.reusable";
+import { Reply } from "@/pages/components/table/index";
 import DataTable from "@/pages/components/dataTable.comp";
-import Reply from "@/pages/components/table/replies.comp";
 import Footer from "@/pages/components/footer.comp";
 
 import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
 import { customFilterFunction } from "@/utils/filter.util";
-import SectionBody from "./components/reusable/sectionBody.reusable";
 
+//? Atoms for using Jotai
 export const statusAtom = atom<StatusType>("All");
 export const ticketAtom = atom<string>("");
 
