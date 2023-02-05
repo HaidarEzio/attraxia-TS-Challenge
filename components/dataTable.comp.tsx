@@ -1,11 +1,11 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
-import { TableData, defaultData } from "../utils/placeholder.data";
+import { TableDataType, defaultData } from "../utils/placeholder.data";
 import { useState } from "react";
 import Image from "next/image";
 
 //? this is for type safety and autocompletion
-const columnHelper = createColumnHelper<TableData>();
+const columnHelper = createColumnHelper<TableDataType>();
 
 const columns = [
   columnHelper.accessor("ticket", {
@@ -43,8 +43,8 @@ const columns = [
 ];
 
 const DataTable = () => {
-  // const [data, setData] = useState<TableData[]>();
-  const data: TableData[] = [...defaultData];
+  // const [data, setData] = useState<TableDataType[]>();
+  const data: TableDataType[] = [...defaultData];
 
   const table = useReactTable({
     data,

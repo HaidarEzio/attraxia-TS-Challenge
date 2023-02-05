@@ -40,7 +40,7 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-between px-8 py-6 mt-10 bg-white mt-flex">
             <h3 className="font-bold">My Tickets</h3>
-            <div className="flex items-center space-x-5">
+            <div className="flex items-center space-x-6">
               <DropDown />
 
               <div>
