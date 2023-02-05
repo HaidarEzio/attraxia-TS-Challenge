@@ -12,6 +12,7 @@ import { TableDataType, StatusType, defaultData } from "../utils/placeholder.dat
 import { useState, useMemo } from "react";
 import { useAtom } from "jotai";
 import Badge from "@/components/reusable/badge.reusable";
+import SearchBar from "@/components/reusable/searchbar.reusable";
 
 export const statusAtom = atom<StatusType>("All");
 export const ticketAtom = atom<string>("");
@@ -77,7 +78,7 @@ export default function Home() {
       <main className="flex flex-col items-center bg-gray-100">
         <div className="w-4/6">
           <Header />
-          <section className="flex items-center justify-center px-8 py-6 bg-white border-t-2 ">
+          <section className="flex items-center justify-center px-8 py-10 bg-white border-t-2 ">
             <div className="flex flex-col items-center justify-center space-y-5 ">
               <Image src="/support-icon.svg" width={64} height={64} alt="support-icon" />
               <h3 className="text-2xl font-bold">Support Forums</h3>
@@ -89,12 +90,7 @@ export default function Home() {
                 <BiRightArrowAlt />
               </div>
               {/* search bar */}
-              <div>
-                <div className="h-11 px-4 w-[16rem] border space-x-1 rounded-full text-neutral-700 bg-neutral-100 border-neutral-200 flex items-center">
-                  <BiSearch size="1.2rem" className="align-bottom" />
-                  <input type="text" className="text-sm bg-transparent focus:outline-none focus:border-blue-500" placeholder="Search Support Forum" />
-                </div>
-              </div>
+              <SearchBar />
             </div>
           </section>
           <section className="flex items-center justify-between px-8 py-6 mt-10 bg-white mt-flex">
