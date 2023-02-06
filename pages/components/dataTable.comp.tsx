@@ -1,4 +1,4 @@
-import { TableDataType, defaultData } from "../utils/placeholder.data";
+import { TableDataType, defaultData } from "../../utils/placeholder.data";
 import { useTable, Column, useFilters } from "react-table";
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
