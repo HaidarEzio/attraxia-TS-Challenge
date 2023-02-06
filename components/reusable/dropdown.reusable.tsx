@@ -32,7 +32,7 @@ const DropDown = () => {
   const [openDropDown, setOpenDropDown] = useState<Boolean>(false);
   const [selectedLabel, setSelectedLabel] = useState<StatusType>("All");
   const [selectedValue, setSelectedValue] = useState<number>(data[0].value);
-  const [selectedColor, setSelectedColor] = useState<string>(data[0].color);
+  const [selectedColor, setSelectedColor] = useState<"black" | "green" | "lightBlue" | "darkBlue" | "gray">(data[0].color);
 
   const [status, setStatus] = useAtom(statusAtom);
 
