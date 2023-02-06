@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <div className="flex justify-between w-full mt-5 mb-10">
       <div className="flex w-28 justify-evenly">
-        <Badge color="yellow">1</Badge>
-        <Badge>2</Badge>
-        <Badge>3</Badge>
+        <Badge color="purple">1</Badge>
+        <Badge color="red">2</Badge>
+        <Badge color="gray">3</Badge>
       </div>
       <div className="flex space-x-5 w-fit justify-evenly">
         <p>1-50 of 149</p>

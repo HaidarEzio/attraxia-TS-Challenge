@@ -8,7 +8,7 @@ const BadgeStitched = styled.span({
       red: tw`bg-red-600`,
       blue: tw`bg-blue-600`,
       purple: tw`bg-purple-900`,
-      gray: tw`bg-gray-600`,
+      gray: tw`bg-neutral-600`,
     },
   },
 });
