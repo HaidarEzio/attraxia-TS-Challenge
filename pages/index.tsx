@@ -22,6 +22,7 @@ export const ticketAtom = atom<string>("");
 export default function Home() {
   const [ticket, setTicket] = useAtom(ticketAtom);
   const data: TableDataType[] = useMemo(() => [...defaultData], []);
+  // const data = null;
 
   //! this can't be moved to a separate file, it needs to live in a component
   const columns: Column<TableDataType>[] = useMemo(
@@ -88,27 +89,39 @@ export default function Home() {
               </button>
             </div>
           </SectionHeader>
-          <section className="flex items-center justify-center px-8 py-10 bg-white border-t-2 ">
-            <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
-              <div className="flex items-center text-blue-500">
-                <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
-                  browse forums
-                </a>
-                <BiRightArrowAlt />
-              </div>
-              {/* search bar */}
+
+          <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
+            <div className="flex items-center text-blue-500">
+              <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
+                browse forums
+              </a>
+              <BiRightArrowAlt />
+            </div>
+
+            <div>
               <SearchBar placeholder="Search Support Forum" />
-            </SectionBody>
-          </section>
+            </div>
+          </SectionBody>
+
           <SectionHeader title="My Tickets">
             <div className="flex items-center justify-end space-x-6 align-text-bottom">
               <DropDown />
               <SearchBar placeholder="Search Tickets" setTicket={setTicket} small />
             </div>
           </SectionHeader>
-          <section className="flex items-center justify-center w-full px-8 py-6 bg-white border-t-2 ">
-            <DataTable data={data} columns={columns} />
-          </section>
+          {data ? (
+            <section className="flex items-center justify-center w-full px-8 py-12 bg-white border-t-2 ">
+              <DataTable data={data} columns={columns} />
+            </section>
+          ) : (
+            <SectionBody
+              imgUrl="/no-tickets.svg"
+              widthAndHeight={150}
+              text="No Tickets Found!"
+              subText="Your support tickets or feature requests will appear here."
+            />
+          )}
+
           <Footer />
         </div>
       </main>
