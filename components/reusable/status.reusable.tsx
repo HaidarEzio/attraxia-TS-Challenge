@@ -1,6 +1,6 @@
 import tw, { styled } from "twin.macro"; //eslint-disable-line
 
-const StatusBadgeStyled = styled.span({
+const StatusBadgeStitched = styled.span({
   ...tw`px-3 py-1 text-center rounded-full`,
   variants: {
     status: {
@@ -15,7 +15,7 @@ const StatusBadgeStyled = styled.span({
 const StatusBadge = ({ title }: any) => {
   return (
     <div className="flex justify-center">
-      <StatusBadgeStyled status={title}>{title}</StatusBadgeStyled>
+      <StatusBadgeStitched status={title}>{title}</StatusBadgeStitched>
     </div>
   );
 };
