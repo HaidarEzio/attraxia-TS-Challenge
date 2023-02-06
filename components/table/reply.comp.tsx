@@ -7,7 +7,14 @@ const Reply = ({ imgUrl, name, replyNumber, staff }: any) => {
       <Image className="rounded-full" src={imgUrl} alt="img" height={20} width={20} />
       <p>Last by {name}</p>
       <Badge cube>{replyNumber}</Badge>
-      {staff ? <p className="">staff</p> : null}
+      {staff ? (
+        <p className="px-3 flex justify-between items-center rounded-full font-medium bg-[#EDEDED]">
+          <span>
+            <Image src="./staff.svg" className="mr-2" width={15} height={15} alt="no" />
+          </span>
+          STAFF
+        </p>
+      ) : null}
     </div>
   );
 };

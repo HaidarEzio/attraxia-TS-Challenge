@@ -46,7 +46,7 @@ export const defaultData: TableDataType[] = [
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
-      staff: true,
+      staff: false,
     },
   },
   {
@@ -70,7 +70,7 @@ export const defaultData: TableDataType[] = [
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
-      staff: true,
+      staff: false,
     },
   },
   {
@@ -82,7 +82,7 @@ export const defaultData: TableDataType[] = [
       imgUrl: "https://avatarapi.com/images/person2.jpg",
       name: "John Doe",
       replyNumber: 6,
-      staff: true,
+      staff: false,
     },
   },
 ];
