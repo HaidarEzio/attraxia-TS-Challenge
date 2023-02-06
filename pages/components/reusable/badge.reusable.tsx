@@ -1,4 +1,4 @@
-import tw, { styled } from "twin.macro";
+import tw, { styled } from "twin.macro"; //eslint-disable-line
 
 const BadgeStitched = styled.span({
   ...tw`flex items-center justify-center w-6 h-6 font-medium rounded-full`,
