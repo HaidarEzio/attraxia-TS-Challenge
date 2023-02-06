@@ -31,7 +31,7 @@ export default function Home() {
         accessor: "ticket",
         Cell: (title) => (
           <div className="flex flex-col ">
-            <h3 className="text-lg font-bold text-blue-700">{title.value}</h3>
+            <h3 className="text-base font-bold text-blue-700">{title.value}</h3>
             <p className="text-base text-neutral-600 ">{title.row.original.description}</p>
           </div>
         ),
