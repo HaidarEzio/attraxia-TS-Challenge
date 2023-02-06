@@ -66,8 +66,8 @@ const DataTable = ({ columns, data }: any) => {
     <>
       <table {...getTableProps()} className="w-full">
         <thead className="">
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+          {headerGroups.map((headerGroup, idx) => (
+            <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
               {headerGroup.headers.map((column, idx) => (
                 <th {...column.getHeaderProps()} className="" key={idx}>
                   {column.render("Header")}
