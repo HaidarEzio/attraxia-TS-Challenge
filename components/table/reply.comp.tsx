@@ -6,7 +6,7 @@ const Reply = ({ imgUrl, name, replyNumber, staff }: any) => {
     <div className="flex space-x-2">
       <Image className="rounded-full" src={imgUrl} alt="img" height={20} width={20} />
       <p>Last by {name}</p>
-      <Badge variant>{replyNumber}</Badge>
+      <Badge cube>{replyNumber}</Badge>
       {staff ? <p className="">staff</p> : null}
     </div>
   );
