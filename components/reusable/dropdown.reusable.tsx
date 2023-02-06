@@ -40,7 +40,7 @@ const DropDown = () => {
     <div className="relative w-[10rem]" onClick={() => setOpenDropDown(!openDropDown)}>
       <div className="flex justify-between">
         <h4 className="ml-5 font-bold">{selectedLabel}</h4>
-        <div className="flex justify-evenly">
+        <div className="flex space-x-1">
           <Badge color={selectedColor}>{selectedValue}</Badge>
           <button className="align-middle">
             <RiArrowDownSLine />
