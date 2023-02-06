@@ -89,20 +89,20 @@ export default function Home() {
               </button>
             </div>
           </SectionHeader>
+          <div className="border-t-2">
+            <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
+              <div className="flex items-center text-blue-500">
+                <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
+                  browse forums
+                </a>
+                <BiRightArrowAlt />
+              </div>
 
-          <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
-            <div className="flex items-center text-blue-500">
-              <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
-                browse forums
-              </a>
-              <BiRightArrowAlt />
-            </div>
-
-            <div>
-              <SearchBar placeholder="Search Support Forum" />
-            </div>
-          </SectionBody>
-
+              <div>
+                <SearchBar placeholder="Search Support Forum" />
+              </div>
+            </SectionBody>
+          </div>
           <SectionHeader title="My Tickets">
             <div className="flex items-center justify-end space-x-6 align-text-bottom">
               <DropDown />

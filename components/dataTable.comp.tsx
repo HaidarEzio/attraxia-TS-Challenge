@@ -2,6 +2,7 @@ import { useTable, useFilters } from "react-table";
 import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { statusAtom, ticketAtom } from "@/pages";
+import { SectionBody } from "./reusable";
 
 const DataTable = ({ columns, data }: any) => {
   const [status] = useAtom(statusAtom);
@@ -22,35 +23,42 @@ const DataTable = ({ columns, data }: any) => {
   }, [status, setFilter, ticket]);
 
   return (
-    <>
-      <table {...getTableProps()} className="w-full">
-        <thead>
-          {headerGroups.map((headerGroup, idx) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
-              {headerGroup.headers.map((column, idx) => (
-                <th {...column.getHeaderProps()} className="" key={idx}>
-                  {column.render("Header")}
-                </th>
+    <div className="flex flex-col w-full">
+      {
+        //? No data found
+        rows.length === 0 ? (
+          <SectionBody imgUrl="/no-query.svg" text={`No tickets found for "${ticket}"`} subText="Please adjust your search term and try again." />
+        ) : (
+          <table {...getTableProps()} className="relative w-full">
+            <thead>
+              {headerGroups.map((headerGroup, idx) => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
+                  {headerGroup.headers.map((column, idx) => (
+                    <th {...column.getHeaderProps()} className="" key={idx}>
+                      {column.render("Header")}
+                    </th>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} key={row.id}>
-                {row.cells.map((cell) => (
-                  <td className="py-4 border-t-2" {...cell.getCellProps()} key={cell.row.id}>
-                    {cell.render("Cell")}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </>
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} key={row.id}>
+                    {row.cells.map((cell) => (
+                      <td className="py-4 border-t-2" {...cell.getCellProps()} key={cell.row.id}>
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )
+      }
+    </div>
   );
 };
 
