@@ -1,18 +1,21 @@
+import { useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
 
-import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import { useTable, Column, useFilters } from "react-table";
-import Header from "@/components/reusable/header.reusable";
-import DataTable from "@/components/dataTable.comp";
-import DropDown from "@/components/reusable/dropdown.reusable";
-import { atom } from "jotai";
-import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
-import { useState, useMemo } from "react";
-import { useAtom } from "jotai";
-import Badge from "@/components/reusable/badge.reusable";
+import { atom, useAtom } from "jotai";
+import { Column } from "react-table";
+import { BiRightArrowAlt } from "react-icons/bi";
+import { RiArrowDownLine } from "react-icons/ri";
 
+import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/components/reusable";
+import { Reply } from "@/components/table";
+import DataTable from "@/components/dataTable.comp";
+import Footer from "@/components/footer.comp";
+
+import { TableDataType, StatusType, defaultData } from "@/utils/placeholder.data";
+import { customFilterFunction } from "@/utils/filter.util";
+
+//? Atoms for using Jotai
 export const statusAtom = atom<StatusType>("All");
 export const ticketAtom = atom<string>("");
 
@@ -20,15 +23,11 @@ export default function Home() {
   const [ticket, setTicket] = useAtom(ticketAtom);
   const data: TableDataType[] = useMemo(() => [...defaultData], []);
 
-  const customFilterFunction = (rows: any, id: any, filterValue: any) => {
-    if (filterValue === "All") return rows;
-    return rows.filter((row: any) => row.original.status === filterValue);
-  };
-
+  //! this can't be moved to a separate file, it needs to live in a component
   const columns: Column<TableDataType>[] = useMemo(
     () => [
       {
-        Header: () => <p className="text-sm text-start">Ticket</p>,
+        Header: () => <p className="text-sm text-start">TICKET</p>,
         accessor: "ticket",
         Cell: (title) => (
           <div className="flex flex-col ">
@@ -38,35 +37,39 @@ export default function Home() {
         ),
       },
       {
-        Header: () => <p className="px-10 text-sm text-start">Status</p>,
+        Header: () => <p className="px-10 text-sm text-start">STATUS</p>,
         accessor: "status",
-        Cell: (data) => (
-          <div className="flex justify-center">
-            <span className="px-3 py-1 text-center bg-red-500 rounded-full">{data.value}</span>
-          </div>
-        ),
+        Cell: ({ value }) => <StatusBadge title={value} />,
         filter: customFilterFunction,
       },
       {
-        Header: () => <p className="text-start">Created On</p>,
+        Header: () => (
+          <p className="flex items-center justify-start px-5 text-sm text-start">
+            CREATED ON
+            <span>
+              <RiArrowDownLine />
+            </span>
+          </p>
+        ),
         accessor: "createdOn",
+        Cell: ({ value }) => <p className="text-sm">{value}</p>,
       },
       {
-        Header: () => <p className="text-start">Replies</p>,
+        Header: () => <p className="text-sm text-start">REPLIES</p>,
         accessor: "replies",
         Cell: ({ row }) => (
-          <div className="flex space-x-2">
-            <Image className="rounded-full" src={row.original.replies.imgUrl} alt="img" height={20} width={20} />
-            <p>Last by {row.original.replies.name}</p>
-            <p className="text-white bg-black rounded-full ">{row.original.replies.replyNumber}</p>
-
-            {row.original.replies.staff ? <p className="">staff</p> : null}
-          </div>
+          <Reply
+            imgUrl={row.original.replies.imgUrl}
+            name={row.original.replies.name}
+            replyNumber={row.original.replies.replyNumber}
+            staff={row.original.replies.staff}
+          />
         ),
       },
     ],
     []
   );
+  //*TODO: DOn't forget to ANY in all return types
 
   return (
     <>
@@ -76,12 +79,17 @@ export default function Home() {
       <div className="h-14 bg-neutral-700" />
       <main className="flex flex-col items-center bg-gray-100">
         <div className="w-4/6">
-          <Header />
-          <section className="flex items-center justify-center px-8 py-6 bg-white border-t-2 ">
-            <div className="flex flex-col items-center justify-center space-y-5 ">
-              <Image src="/support-icon.svg" width={64} height={64} alt="support-icon" />
-              <h3 className="text-2xl font-bold">Support Forums</h3>
-              <p className="text-center">Search the topic you need help with in our support forums.</p>
+          <SectionHeader title="Support &nbsp;Resources">
+            <div className="flex items-center space-x-5">
+              <h4 className="">Need Help?</h4>
+              <button className="flex items-center py-3 space-x-2 bg-blue-600 rounded-lg px-7 ">
+                <Image src="/lifebuoy.svg" width={20} height={20} alt="support-icon" />
+                <span className="font-bold text-white">Get Support</span>
+              </button>
+            </div>
+          </SectionHeader>
+          <section className="flex items-center justify-center px-8 py-10 bg-white border-t-2 ">
+            <SectionBody imgUrl="/support-icon.svg" text="Support Forums" subText="Search the topic you need help with in our support forums.">
               <div className="flex items-center text-blue-500">
                 <a href="" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase ">
                   browse forums
@@ -89,49 +97,19 @@ export default function Home() {
                 <BiRightArrowAlt />
               </div>
               {/* search bar */}
-              <div>
-                <div className="h-11 px-4 w-[16rem] border space-x-1 rounded-full text-neutral-700 bg-neutral-100 border-neutral-200 flex items-center">
-                  <BiSearch size="1.2rem" className="align-bottom" />
-                  <input type="text" className="text-sm bg-transparent focus:outline-none focus:border-blue-500" placeholder="Search Support Forum" />
-                </div>
-              </div>
-            </div>
+              <SearchBar placeholder="Search Support Forum" />
+            </SectionBody>
           </section>
-          <section className="flex items-center justify-between px-8 py-6 mt-10 bg-white mt-flex">
-            <h3 className="font-bold">My Tickets</h3>
-            <div className="flex items-center space-x-6">
+          <SectionHeader title="My Tickets">
+            <div className="flex items-center justify-end space-x-6 align-text-bottom">
               <DropDown />
-
-              <div>
-                <div className="h-11 px-4 w-[16rem] border space-x-1 rounded-full text-neutral-700 bg-neutral-100 border-neutral-200 flex items-center">
-                  <BiSearch size="1.2rem" className="align-bottom" />
-                  <input
-                    type="text"
-                    className="text-sm bg-transparent focus:outline-none focus:border-blue-500"
-                    placeholder="Search Support Forum"
-                    onChange={(e) => setTicket(e.target.value)}
-                  />
-                </div>
-              </div>
+              <SearchBar placeholder="Search Tickets" setTicket={setTicket} small />
             </div>
-          </section>
+          </SectionHeader>
           <section className="flex items-center justify-center w-full px-8 py-6 bg-white border-t-2 ">
             <DataTable data={data} columns={columns} />
           </section>
-          <div className="flex justify-between w-full mt-5 mb-10">
-            <div className="flex w-28 justify-evenly">
-              <Badge>1</Badge>
-              <Badge>2</Badge>
-              <Badge>3</Badge>
-            </div>
-            <div className="flex space-x-5 w-fit justify-evenly">
-              <p>1-50 of 149</p>
-              <div className="flex items-center justify-between space-x-3">
-                <RiArrowLeftSLine size="1.5rem" className="p-0.5 align-bottom border rounded-sm" />{" "}
-                <RiArrowRightSLine size="1.5rem" className="p-0.5 align-bottom border rounded-sm" />
-              </div>
-            </div>
-          </div>
+          <Footer />
         </div>
       </main>
     </>
