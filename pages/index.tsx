@@ -5,13 +5,14 @@ import Image from "next/image";
 import { atom, useAtom } from "jotai";
 import { Column } from "react-table";
 import { BiRightArrowAlt } from "react-icons/bi";
+import { RiArrowDownLine } from "react-icons/ri";
 
-import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/pages/components/reusable/index.reusable";
-import { Reply } from "@/pages/components/table/index";
-import DataTable from "@/pages/components/dataTable.comp";
-import Footer from "@/pages/components/footer.comp";
+import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/components/reusable";
+import { Reply } from "@/components/table";
+import DataTable from "@/components/dataTable.comp";
+import Footer from "@/components/footer.comp";
 
-import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
+import { TableDataType, StatusType, defaultData } from "@/utils/placeholder.data";
 import { customFilterFunction } from "@/utils/filter.util";
 
 //? Atoms for using Jotai
@@ -26,7 +27,7 @@ export default function Home() {
   const columns: Column<TableDataType>[] = useMemo(
     () => [
       {
-        Header: () => <p className="text-sm text-start">Ticket</p>,
+        Header: () => <p className="text-sm text-start">TICKET</p>,
         accessor: "ticket",
         Cell: (title) => (
           <div className="flex flex-col ">
@@ -36,17 +37,25 @@ export default function Home() {
         ),
       },
       {
-        Header: () => <p className="px-10 text-sm text-start">Status</p>,
+        Header: () => <p className="px-10 text-sm text-start">STATUS</p>,
         accessor: "status",
         Cell: ({ value }) => <StatusBadge title={value} />,
         filter: customFilterFunction,
       },
       {
-        Header: () => <p className="text-start">Created On</p>,
+        Header: () => (
+          <p className="flex items-center justify-start px-5 text-sm text-start">
+            CREATED ON
+            <span>
+              <RiArrowDownLine />
+            </span>
+          </p>
+        ),
         accessor: "createdOn",
+        Cell: ({ value }) => <p className="text-sm">{value}</p>,
       },
       {
-        Header: () => <p className="text-start">Replies</p>,
+        Header: () => <p className="text-sm text-start">REPLIES</p>,
         accessor: "replies",
         Cell: ({ row }) => (
           <Reply
@@ -92,9 +101,9 @@ export default function Home() {
             </SectionBody>
           </section>
           <SectionHeader title="My Tickets">
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center justify-end space-x-6 align-text-bottom">
               <DropDown />
-              <SearchBar placeholder="Search Tickets" setTicket={setTicket} />
+              <SearchBar placeholder="Search Tickets" setTicket={setTicket} small />
             </div>
           </SectionHeader>
           <section className="flex items-center justify-center w-full px-8 py-6 bg-white border-t-2 ">

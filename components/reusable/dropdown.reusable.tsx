@@ -9,25 +9,30 @@ const DropDown = () => {
   const data = [
     {
       label: "All",
-      value: 2,
+      value: 10,
+      color: "gray",
     },
     {
       label: "Open",
-      value: 65,
+      value: 5,
+      color: "lightBlue",
     },
     {
       label: "Feedback",
-      value: 27,
+      value: 2,
+      color: "darkBlue",
     },
     {
       label: "Resolved",
-      value: 35,
+      value: 3,
+      color: "green",
     },
   ] as const;
 
   const [openDropDown, setOpenDropDown] = useState<Boolean>(false);
   const [selectedLabel, setSelectedLabel] = useState<StatusType>("All");
   const [selectedValue, setSelectedValue] = useState<number>(data[0].value);
+  const [selectedColor, setSelectedColor] = useState<string>(data[0].color);
 
   const [status, setStatus] = useAtom(statusAtom);
 
@@ -35,8 +40,8 @@ const DropDown = () => {
     <div className="relative w-[10rem]" onClick={() => setOpenDropDown(!openDropDown)}>
       <div className="flex justify-between">
         <h4 className="ml-5 font-bold">{selectedLabel}</h4>
-        <div className="flex justify-evenly">
-          <Badge>{selectedValue}</Badge>
+        <div className="flex space-x-1">
+          <Badge color={selectedColor}>{selectedValue}</Badge>
           <button className="align-middle">
             <RiArrowDownSLine />
           </button>
@@ -44,7 +49,7 @@ const DropDown = () => {
       </div>
       {openDropDown && (
         <div className="absolute right-0 w-full p-2 bg-white border rounded-sm shadow-md -top-3 ">
-          {data.map(({ label, value }, idx) => (
+          {data.map(({ label, value, color }, idx) => (
             <p
               className="flex justify-between px-2 py-1 text-sm font-bold text-[#333333] hover:bg-neutral-100"
               key={idx}
@@ -52,10 +57,11 @@ const DropDown = () => {
                 setStatus(label);
                 setSelectedLabel(label);
                 setSelectedValue(value);
+                setSelectedColor(color);
               }}
             >
               {label}
-              <Badge>{value}</Badge>
+              <Badge color={color}>{value}</Badge>
             </p>
           ))}
         </div>
