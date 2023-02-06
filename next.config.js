@@ -6,6 +6,10 @@ const nextConfig = withTwin({
   images: {
     domains: ["avatarapi.com"],
   },
+  webpack: (config) => {
+    config.resolve.preferRelative = true;
+    return config;
+  },
 });
 
 module.exports = nextConfig;

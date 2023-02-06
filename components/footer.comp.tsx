@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <div className="flex justify-between w-full mt-5 mb-10">
       <div className="flex w-28 justify-evenly">
-        <Badge color="purple">1</Badge>
-        <Badge color="red">2</Badge>
+        <Badge color="black">1</Badge>
+        <Badge color="gray">2</Badge>
         <Badge color="gray">3</Badge>
       </div>
       <div className="flex space-x-5 w-fit justify-evenly">

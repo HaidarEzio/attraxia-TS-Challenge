@@ -6,10 +6,10 @@ import { atom, useAtom } from "jotai";
 import { Column } from "react-table";
 import { BiRightArrowAlt } from "react-icons/bi";
 
-import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/pages/components/reusable";
-import { Reply } from "@/pages/components/table";
-import DataTable from "@/pages/components/dataTable.comp";
-import Footer from "@/pages/components/footer.comp";
+import { DropDown, SearchBar, SectionBody, SectionHeader, StatusBadge } from "@/components/reusable";
+import { Reply } from "@/components/table";
+import DataTable from "@/components/dataTable.comp";
+import Footer from "@/components/footer.comp";
 
 import { TableDataType, StatusType, defaultData } from "../utils/placeholder.data";
 import { customFilterFunction } from "@/utils/filter.util";

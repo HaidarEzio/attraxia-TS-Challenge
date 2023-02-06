@@ -1,14 +1,13 @@
 import tw, { styled } from "twin.macro"; //eslint-disable-line
 
 const BadgeStitched = styled.span({
-  ...tw`flex items-center justify-center w-6 h-6 font-medium rounded-full`,
+  ...tw`flex items-center justify-center w-6 h-6 font-medium rounded-full text-[#333333]`,
   variants: {
     color: {
+      black: tw`text-white bg-black`,
       green: tw`bg-green-600`,
       red: tw`bg-red-600`,
-      blue: tw`bg-blue-600`,
-      purple: tw`bg-purple-900`,
-      gray: tw`bg-neutral-600`,
+      gray: tw`bg-neutral-200`,
     },
   },
 });
