@@ -44,7 +44,7 @@ export default function Home() {
       },
       {
         Header: () => (
-          <p className="flex items-center justify-start text-sm text-start">
+          <p className="flex items-center justify-start px-5 text-sm text-start">
             CREATED ON
             <span>
               <RiArrowDownLine />
