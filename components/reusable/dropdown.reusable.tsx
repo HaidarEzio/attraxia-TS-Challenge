@@ -1,6 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { StatusType, defaultData } from "utils/placeholder.data";
+import { StatusType } from "utils/placeholder.data";
 import { useAtom } from "jotai";
 import { statusAtom } from "@/pages";
 import Badge from "./badge.reusable";
@@ -48,7 +48,7 @@ const DropDown = () => {
         </div>
       </div>
       {openDropDown && (
-        <div className="absolute right-0 w-full p-2 bg-white border rounded-sm shadow-md -top-3 ">
+        <div className="absolute right-0 z-10 w-full p-2 bg-white border rounded-sm shadow-md -top-3">
           {data.map(({ label, value, color }, idx) => (
             <p
               className="flex justify-between px-2 py-1 text-sm font-bold text-[#333333] hover:bg-neutral-100"

@@ -1,7 +1,5 @@
 import tw, { styled } from "twin.macro"; //eslint-disable-line
 
-import { StatusType } from "../../utils/placeholder.data";
-
 const StatusBadgeStyled = styled.span({
   ...tw`px-3 py-1 text-center rounded-full`,
   variants: {
@@ -13,6 +11,7 @@ const StatusBadgeStyled = styled.span({
     },
   },
 });
+//* there's a bug with the title type, it's not being recognized as a string or it's own type,
 const StatusBadge = ({ title }: any) => {
   return (
     <div className="flex justify-center">

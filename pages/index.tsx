@@ -22,6 +22,7 @@ export const ticketAtom = atom<string>("");
 export default function Home() {
   const [ticket, setTicket] = useAtom(ticketAtom);
   const data: TableDataType[] = useMemo(() => [...defaultData], []);
+
   // const data = null;
 
   //! this can't be moved to a separate file, it needs to live in a component
@@ -70,7 +71,6 @@ export default function Home() {
     ],
     []
   );
-  //*TODO: DOn't forget to ANY in all return types
 
   return (
     <>
@@ -121,7 +121,6 @@ export default function Home() {
               subText="Your support tickets or feature requests will appear here."
             />
           )}
-
           <Footer />
         </div>
       </main>

@@ -1,5 +1,11 @@
-import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
 import tw, { styled } from "twin.macro"; //eslint-disable-line
+import { BiSearch, BiRightArrowAlt } from "react-icons/bi";
+
+interface SearchBarProps {
+  placeholder: string;
+  setTicket?: (value: string) => void;
+  small?: boolean;
+}
 
 const SearchBarStitched = styled.div({
   ...tw`flex justify-between w-full`,
@@ -10,12 +16,6 @@ const SearchBarStitched = styled.div({
   },
 });
 
-type SearchBarProps = {
-  placeholder: string;
-  setTicket?: any;
-  small?: boolean;
-};
-//* Make variant
 const SearchBar = ({ placeholder, setTicket, small }: SearchBarProps) => {
   return (
     <SearchBarStitched small={small}>

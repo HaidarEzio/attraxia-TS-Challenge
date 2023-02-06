@@ -3,8 +3,14 @@ import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { statusAtom, ticketAtom } from "@/pages";
 import { SectionBody } from "./reusable";
+import { Column } from "react-table";
+import { TableDataType } from "@/utils/placeholder.data";
+interface DataTableProps {
+  columns: Column<TableDataType>[];
+  data: TableDataType[];
+}
 
-const DataTable = ({ columns, data }: any) => {
+const DataTable = ({ columns, data }: DataTableProps) => {
   const [status] = useAtom(statusAtom);
   const [ticket] = useAtom(ticketAtom);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setFilter } = useTable(
@@ -42,12 +48,12 @@ const DataTable = ({ columns, data }: any) => {
               ))}
             </thead>
             <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
+              {rows.map((row, idx) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()} key={row.id}>
-                    {row.cells.map((cell) => (
-                      <td className="py-4 border-t-2" {...cell.getCellProps()} key={cell.row.id}>
+                  <tr {...row.getRowProps()} key={idx}>
+                    {row.cells.map((cell, idx) => (
+                      <td className="py-4 border-t-2" {...cell.getCellProps()} key={idx}>
                         {cell.render("Cell")}
                       </td>
                     ))}

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Badge from "../reusable/badge.reusable";
 
-const Reply = ({ imgUrl, name, replyNumber, staff }: any) => {
+interface ReplyProps {
+  imgUrl: string;
+  name: string;
+  replyNumber: number;
+  staff: boolean;
+}
+
+const Reply = ({ imgUrl, name, replyNumber, staff }: ReplyProps) => {
   return (
     <div className="flex space-x-2">
       <Image className="rounded-full" src={imgUrl} alt="img" height={20} width={20} />

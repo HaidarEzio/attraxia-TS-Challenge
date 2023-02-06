@@ -1,5 +1,11 @@
 import tw, { styled } from "twin.macro"; //eslint-disable-line
 
+interface BadgeProps {
+  children: React.ReactNode;
+  color?: "black" | "green" | "lightBlue" | "darkBlue" | "gray";
+  cube?: boolean;
+}
+
 const BadgeStitched = styled.span({
   ...tw`flex items-center justify-center w-6 h-6 font-bold rounded-full text-[#333333]`,
   variants: {
@@ -29,7 +35,7 @@ const BadgeStitched = styled.span({
   },
 });
 
-const Badge = ({ children, color, cube }: any) => {
+const Badge = ({ children, color, cube }: BadgeProps) => {
   return (
     <BadgeStitched cube={cube} color={color} className="flex items-center justify-center w-6 h-6 font-medium bg-green-600 rounded-full items">
       <span>{children}</span>
